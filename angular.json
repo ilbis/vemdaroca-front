@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "vemdaroca-front"
+    }
+  },
+  "defaultProject": "vemdaroca-front",
+  "cli": {
+    "analytics": "f00e3588-3de0-44ad-9d81-5fcbac117687"
+  }
 }
