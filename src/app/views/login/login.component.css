@@ -1,0 +1,59 @@
+.bg {
+    /* background-image: url("../../../assets/back.png"); */
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+}
+
+.material-icons {
+    color: rgba(255, 255, 255, 100);
+}
+
+.form {
+    position: relative;
+    /* z-index: 1; */
+    /* background: #FFFFFF; */
+    max-width: 500px;
+    /* margin: 100px auto 0; */
+    padding: 350px 100px 0 480px;
+    text-align: right;
+    /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); */
+  }
+
+  .form mat-form-field {
+    width: 100%;
+    /* font-family: "Roboto", sans-serif; */
+    /* outline: 0; */
+    /* background: #f2f2f2; */
+    /* border: 0; */
+    /* margin: 0 0 15px; */
+    /* padding: 15px; */
+    /* box-sizing: border-box; */
+    /* font-size: 14px; */
+  }
+
+  .form .button {
+      width:70%;
+      height: 80px;
+      font-size: 18px;
+      margin: 100px 70px 0;
+      left: 50%;
+
+  }
+  .form .message {
+    margin: 20px 0 0;
+    color: white;
+    font-size: 18px;
+  }
+
+  .register {
+    position: absolute;
+    margin: 40px;
+    left: 51%;
+    color: white;
+    font-size: 18px;
+  }
