@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-pedido',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pedido.css']
 })
 export class PedidoComponent implements OnInit {
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+}
 }

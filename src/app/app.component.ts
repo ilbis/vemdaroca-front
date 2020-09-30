@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from './model/user';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +11,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'vemdaroca-front';
+  currentUser: User;
 
-  constructor(public http: HttpClient) {}
-
-  public ping() {
-    this.http.get('http://localhost:8080/login')
-      .subscribe(
-        data => console.log(data),
-        err => console.log(err)
-      );
+  constructor(private authenticationService: AuthenticationService, private router:Router) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
+
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+}
 }

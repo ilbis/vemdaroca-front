@@ -1,18 +1,17 @@
 <div class="bg">
-    <form class="form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+        
         <mat-form-field appearance="outline">
         <mat-label>ID Usuário</mat-label>
-        <input matInput placeholder="Placeholder" required>
+        <input matInput placeholder="Placeholder" required formControlName="username" class="form-control">
         <mat-icon matPrefix>face</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
         <mat-label>Senha</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" class="form-control">
         <mat-icon matPrefix>https</mat-icon>
-        <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"> -->
-        <!-- <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
-        <!-- </button> -->
+
         </mat-form-field>
         <a href="#" class="message">Esqueceu a senha?</a>
         <button mat-button class="button">ENTRAR</button>
