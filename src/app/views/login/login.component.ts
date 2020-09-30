@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    this.authenticationService.login(this.f.username.value, this.convertBase64(this.f.password.value))
         .pipe(first())
         .subscribe(
           data => {
@@ -64,4 +64,11 @@ export class LoginComponent implements OnInit {
                 this.loading = false;
             });
   }
-}
+
+  convertBase64(password:string): string {
+      return btoa(encodeURIComponent(password).replace(/%([0-9A-F]{2})/g,
+      (match, p1) => {
+        return String.fromCharCode(("0x" + p1) as any);
+      }))
+    }; 
+  }
