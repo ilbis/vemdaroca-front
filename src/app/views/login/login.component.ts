@@ -1,9 +1,11 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { DialogData } from '../utils/dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public dialog: MatDialog) {
                  // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 
           this.router.navigate(['/pedido']);
@@ -62,6 +65,8 @@ export class LoginComponent implements OnInit {
             error => {
                 this.error = error;
                 this.loading = false;
+                this.openDialog();
+                console.log("Usuario ou senha incorretos")
             });
   }
 
@@ -70,5 +75,14 @@ export class LoginComponent implements OnInit {
       (match, p1) => {
         return String.fromCharCode(("0x" + p1) as any);
       }))
-    }; 
+  }; 
+
+  openDialog() {
+    this.dialog.open(DialogData, {
+      data: {
+        message: 'Usuario ou senha incorreto!'
+      }
+    });
   }
+
+}

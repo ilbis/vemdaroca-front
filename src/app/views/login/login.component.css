@@ -1,3 +1,15 @@
+.login-page {
+  max-width: 650px;
+  /* padding: 1% 0 0; */
+  margin: auto;
+}
+
+.logo {
+  width: 30%;
+  height: 30%;
+  /* margin-bottom: 1%; */
+}
+
 .bg {
     /* background-image: url("../../../assets/back.png"); */
     /* Full height */
@@ -6,7 +18,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: black;
+    background-color: green;
+    margin: auto;
+
 }
 
 .material-icons {
@@ -14,14 +28,15 @@
 }
 
 .form {
-    position: relative;
-    /* z-index: 1; */
-    /* background: #FFFFFF; */
-    max-width: 500px;
-    /* margin: 100px auto 0; */
-    padding: 350px 100px 0 480px;
-    text-align: right;
-    /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); */
+
+  position: relative;
+  z-index: 1;
+  /* background: green; */
+  max-width: 650px;
+  margin: 0 auto 0px;
+  padding: 45px 45px 0 45px;
+  text-align: center;
+  /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); */
   }
 
   .form mat-form-field {
@@ -36,18 +51,19 @@
     /* font-size: 14px; */
   }
 
-  .form .button {
+  .button {
       width:70%;
       height: 80px;
       font-size: 18px;
-      margin: 100px 70px 0;
+      margin: 70px 0 0;
       left: 50%;
 
   }
-  .form .message {
+  .message {
     margin: 20px 0 0;
     color: white;
     font-size: 18px;
+    text-align: center;
   }
 
   .register {

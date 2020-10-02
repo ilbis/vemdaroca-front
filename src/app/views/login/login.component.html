@@ -1,20 +1,30 @@
 <div class="bg">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="login-page">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+            <img class="logo" src="../../../assets/adidas.png">
+
+            <mat-form-field appearance="outline">
+            <mat-label>ID Usuário</mat-label>
+            <input matInput placeholder="Placeholder" required formControlName="username" class="form-control">
+            <mat-icon matPrefix>face</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" class="form-control">
+            <mat-icon matPrefix>https</mat-icon>
+
+            </mat-form-field>
+            <button mat-button class="button">ENTRAR</button><br>
+
+        </form>
+        <div class="message">
+            <a href="#">Esqueceu a senha?</a>
+        </div>
         
-        <mat-form-field appearance="outline">
-        <mat-label>ID Usuário</mat-label>
-        <input matInput placeholder="Placeholder" required formControlName="username" class="form-control">
-        <mat-icon matPrefix>face</mat-icon>
-        </mat-form-field>
+        <div class="register">
+            <p>Não tem uma conta? <a href="#">Registre agora</a></p>
+        </div>
 
-        <mat-form-field appearance="outline">
-        <mat-label>Senha</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" class="form-control">
-        <mat-icon matPrefix>https</mat-icon>
-
-        </mat-form-field>
-        <a href="#" class="message">Esqueceu a senha?</a>
-        <button mat-button class="button">ENTRAR</button>
-        <p class="register">Não tem uma conta? <a href="#">Registre agora</a></p>
-    </form>
+    </div>
 </div>
