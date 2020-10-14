@@ -1,0 +1,77 @@
+<div class="bg">
+    <div class="label" (click)="back()">
+        <span class="material-icons">keyboard_arrow_left</span>
+        <span class="login">Login</span>
+    </div>
+    <span class="registro">Registrar Usuário</span>
+
+    <form [formGroup]="cadastroUsuario" (ngSubmit)="onSubmit()" class="form">
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Nome Completo</mat-label>
+            <input matInput required formControlName="nome" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Username</mat-label>
+            <input matInput required formControlName="username" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Email</mat-label>
+            <input matInput required formControlName="email" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Celular/WhatsApp</mat-label>
+            <input matInput required formControlName="tel" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>CEP</mat-label>
+            <input matInput required formControlName="cep" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Rua</mat-label>
+            <input matInput required formControlName="rua" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Número</mat-label>
+            <input matInput required formControlName="numero" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Complemento</mat-label>
+            <input matInput formControlName="complemento" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Bairro</mat-label>
+            <input matInput required formControlName="bairro" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Cidade</mat-label>
+            <input matInput required formControlName="cidade" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>UF</mat-label>
+            <input matInput required formControlName="uf" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Senha</mat-label>
+            <input matInput required formControlName="senha" class="form-control" type="password">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Comfirmar Senha</mat-label>
+            <input matInput required formControlName="confirmarSenha" class="form-control" type="password">
+        </mat-form-field>
+
+    </form>
+
+</div>

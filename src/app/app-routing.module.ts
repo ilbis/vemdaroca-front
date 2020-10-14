@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { BasicAuthInterceptor } from './guards/basic.auth.interceptor';
 import { ErrorInterceptor } from './guards/error.interceptor';
+import { CadastroUsuarioComponent } from './views/cadastro-usuario/cadastro-usuario';
 import { LoginComponent } from './views/login/login.component';
 import { PedidoComponent } from './views/pedido/pedido';
 
@@ -12,6 +13,10 @@ const routes: Routes = [
   { 
     path: 'login',
     component: LoginComponent
+  },
+  { 
+    path: 'cadastro-usuario',
+    component: CadastroUsuarioComponent
   },
   { 
     path: 'pedido',
