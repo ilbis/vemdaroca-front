@@ -5,8 +5,8 @@
 }
 
 .logo {
-  width: 30%;
-  height: 30%;
+  width: 60%;
+  height: 60%;
   /* margin-bottom: 1%; */
 }
 
@@ -80,5 +80,9 @@
   }
 
   :host /deep/ .mat-form-field-appearance-outline .mat-form-field-outline {
+  color:white;
+}
+
+a:visited {
   color:white;
 }
