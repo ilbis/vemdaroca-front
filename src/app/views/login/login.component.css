@@ -61,18 +61,19 @@
 
   }
   .message {
-    margin: 20px 0 0;
+    /* margin: 20px 0 0; */
     color: white;
     font-size: 18px;
-    text-align: center;
+    text-align: right;
   }
 
   .register {
-    position: absolute;
+    /* position: absolute; */
     margin: 40px;
     left: 51%;
     color: white;
     font-size: 18px;
+    text-align: center;
   }
 
   .mat-input-element {
