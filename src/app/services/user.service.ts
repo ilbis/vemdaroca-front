@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+    public apiURL = environment.apiUrl;
     constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<User[]>(`${config.apiUrl}/users`);
+    // getAll() {
+    //     return this.http.get<User[]>(`${config.apiUrl}/users`);
+    // }
+
+    createUser (user: User) {
+        console.log(localStorage.getItem('currentUser'));
+
+        return this.http.post<User>(`${this.apiURL}/cliente`,user)
     }
 }

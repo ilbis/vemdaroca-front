@@ -64,14 +64,16 @@
 
         <mat-form-field appearance="legacy" class="full">
             <mat-label>Senha</mat-label>
-            <input matInput required formControlName="senha" class="form-control" type="password">
+            <input matInput required formControlName="password" class="form-control" type="password">
         </mat-form-field>
 
         <mat-form-field appearance="legacy" class="full">
             <mat-label>Comfirmar Senha</mat-label>
-            <input matInput required formControlName="confirmarSenha" class="form-control" type="password">
+            <input matInput required formControlName="confirmPassword" class="form-control" type="password">
+            <!-- <div *ngIf="f.confirmPassword.errors.mustMatch">As senhas não conferem</div> -->
         </mat-form-field>
 
+        <button mat-raised-button color="accent">Cadastrar</button>
     </form>
 
 </div>

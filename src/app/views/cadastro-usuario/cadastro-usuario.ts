@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/model/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -12,8 +14,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class CadastroUsuarioComponent implements OnInit {
   cadastroUsuario: FormGroup;
   submitted = false;
+  myForm: User;
 
   constructor(private authenticationService: AuthenticationService, private router: Router, private formBuilder: FormBuilder,
+    private userService: UserService
     ) { }
 
     ngOnInit() {
@@ -29,8 +33,8 @@ export class CadastroUsuarioComponent implements OnInit {
           bairro: ['', Validators.required],
           cidade: ['', Validators.required],
           uf: ['', Validators.required],
-          senha: ['', Validators.required],
-          confirmarSenha: ['', Validators.required]
+          password: ['', Validators.required],
+          confirmPassword: ['', Validators.required]
       });
     }
 
@@ -41,7 +45,21 @@ export class CadastroUsuarioComponent implements OnInit {
     if (this.cadastroUsuario.invalid) {
         return;
     }
+
+    this.myForm = this.cadastroUsuario.value;
+    this.myForm.password = btoa(encodeURIComponent(this.myForm.password).replace(/%([0-9A-F]{2})/g,
+    (match, p1) => {
+      return String.fromCharCode(("0x" + p1) as any);
+    }));
+    
+    this.userService.createUser(this.myForm).subscribe((response:any) => {
+      alert('SUCCESS!! :-)\n\n' + JSON.stringify(response))
+    },err => {
+      console.log(err)
+    })
+
   }
+
 
   back() {
     this.router.navigateByUrl('/login')
