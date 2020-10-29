@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
+import { DialogData } from '../utils/dialog.component';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class CadastroUsuarioComponent implements OnInit {
   myForm: User;
 
   constructor(private authenticationService: AuthenticationService, private router: Router, private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService, public dialog: MatDialog
     ) { }
 
     ngOnInit() {
@@ -53,15 +55,22 @@ export class CadastroUsuarioComponent implements OnInit {
     }));
     
     this.userService.createUser(this.myForm).subscribe((response:any) => {
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(response))
+      this.openDialog("Usuario criado com sucesso")
+      this.cadastroUsuario.reset();
     },err => {
-      console.log(err)
-    })
-
+        this.openDialog("Erro ao criar usuario")
+      })
   }
-
 
   back() {
     this.router.navigateByUrl('/login')
+  }
+
+  openDialog(text: string) {
+    this.dialog.open(DialogData, {
+      data: {
+        message: text
+      }
+    });
   }
 }

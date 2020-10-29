@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../model/user';
 import { environment } from 'src/environments/environment';
 
@@ -14,8 +14,6 @@ export class UserService {
     // }
 
     createUser (user: User) {
-        console.log(localStorage.getItem('currentUser'));
-
         return this.http.post<User>(`${this.apiURL}/cliente`,user)
     }
 }
