@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,17 +8,29 @@ import { LoginComponent } from './views/login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; 
 import { MatIconModule } from '@angular/material/icon'; 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CadastroUsuarioComponent } from './views/cadastro-usuario/cadastro-usuario';
 import { MatButtonModule } from '@angular/material/button';
+import { JwtInterceptor } from './guards/jwt.interceptor';
+import { MatTableModule } from '@angular/material/table'
+import { CommonModule } from '@angular/common';
+import { AgGridModule } from 'ag-grid-angular';
+import { PedidoComponent } from './views/pedido/pedido';
+import { SelectQuantityComponent } from './utils/select-quantity/select-quantity.component';
 
 @NgModule({
+  schemas:[
+    NO_ERRORS_SCHEMA,
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    PedidoComponent,
+    SelectQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +42,18 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    CommonModule,
+    AgGridModule.withComponents([SelectQuantityComponent])
+    ],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: JwtInterceptor, 
+      multi: true 
+    },
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
