@@ -11,7 +11,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 })
 
 export class SelectQuantityComponent implements ICellRendererAngularComp {
-
+  valueNumber: number = 0;
   params;
   label: string;
 
@@ -33,7 +33,14 @@ export class SelectQuantityComponent implements ICellRendererAngularComp {
         // ...something
       }
       this.params.onClick(params);
-
     }
+  }
+
+  add() {
+    this.valueNumber +=1;
+  }
+
+  remove() {
+    this.valueNumber -=1;
   }
 }

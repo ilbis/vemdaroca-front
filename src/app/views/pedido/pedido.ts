@@ -20,8 +20,7 @@ export class PedidoComponent implements OnInit {
   public colunas = [
       { field: 'nome', headerName: 'Produto', sortable: true, resizable: true, width:'110px',cellStyle:{'font-size':'10px'}},
       { field: 'unidMedida', headerName: 'Unid Medida', sortable: true, resizable: true ,width:'80px', cellStyle:{'font-size':'10px'}},
-      // { field: 'tipo', sortable: true },
-      { field: 'valor', resizable: true, type: 'numericColumn', width:'70px', cellStyle:{'font-size':'10px'}},
+      { field: 'valor', resizable: true, width:'70px', cellStyle:{'font-size':'10px'}},
       {
         field: 'Quantidade',
         headerName: 'Qtd',
