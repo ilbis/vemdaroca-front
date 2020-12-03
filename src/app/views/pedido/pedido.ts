@@ -1,64 +1,69 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { Produto } from 'src/app/model/produto';
 import { MatTableDataSource } from '@angular/material/table';
-import { SelectQuantityComponent } from 'src/app/utils/select-quantity/select-quantity.component';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.html',
   styleUrls: ['./pedido.css']
 })
-export class PedidoComponent implements OnInit {
+export class PedidoComponent implements AfterViewInit{
+  total: number = 0;
+  displayedColumns: string[] = ['nome', 'unidMedida', 'valor', 'qtd'];
+  produtos:Produto[] = [];
+  dataSource = new MatTableDataSource();
 
-  frameworkComponents: any;
+  @ViewChild(MatSort) sort: MatSort;
 
-  rowDataClicked1 = {};
-
-  public colunas = [
-      { field: 'nome', headerName: 'Produto', sortable: true, resizable: true, width:'110px',cellStyle:{'font-size':'10px'}},
-      { field: 'unidMedida', headerName: 'Unid Medida', sortable: true, resizable: true ,width:'80px', cellStyle:{'font-size':'10px'}},
-      { field: 'valor', resizable: true, width:'70px', cellStyle:{'font-size':'10px'}},
-      {
-        field: 'Quantidade',
-        headerName: 'Qtd',
-        width:'130px',
-        cellRenderer: 'buttonRenderer',
-        cellRendererParams: {
-          onClick: this.onBtnClick1.bind(this),
-          label: 'Selecionar'
-        }
-      },
-  ];
-
-  public produtos:Produto[] = [];
-
-  public data: MatTableDataSource<Produto>;
-
-  constructor(private authenticationService: AuthenticationService, private router: Router, private produtoService: ProdutoService) { 
-    this.frameworkComponents = {
-      buttonRenderer: SelectQuantityComponent,
-    }
-  }
-
-  ngOnInit(): void {
+  ngAfterViewInit() {
     this.produtoService.getAll().subscribe(data => {
+      data.forEach (value => {
+        value.qtd = 0;
+      })
       this.produtos = data;
+      this.dataSource = new MatTableDataSource(data);
       console.log(data);
     },
     error => {
       console.log("Erro ao carregar produtos")
     })
+    this.dataSource.sort = this.sort;
   }
+
+  constructor(private authenticationService: AuthenticationService, private router: Router, private produtoService: ProdutoService) { }
 
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
 
-  onBtnClick1(e) {
-    this.rowDataClicked1 = e.rowData;
+  add(produto: Produto) {
+    produto.qtd +=1;   
+    this.updateValue(); 
+  }
+
+  remove(produto: Produto) {
+    if (produto.qtd>0) {
+      produto.qtd -=1;
+      this.updateValue();
+    }
+  }
+
+  updateValue() {
+    this.total = 0;
+    console.log("atualizado");
+    
+    this.produtos.forEach(value => {
+      this.total += value.qtd * value.valor;
+    })
+  }
+
+  imprimirPedido() {
+    console.log(this.produtos);
+    console.log("Valor Total R$" + this.total);
   }
 }

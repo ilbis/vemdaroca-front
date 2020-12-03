@@ -16,9 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { JwtInterceptor } from './guards/jwt.interceptor';
 import { MatTableModule } from '@angular/material/table'
 import { CommonModule } from '@angular/common';
-import { AgGridModule } from 'ag-grid-angular';
 import { PedidoComponent } from './views/pedido/pedido';
-import { SelectQuantityComponent } from './utils/select-quantity/select-quantity.component';
 
 @NgModule({
   schemas:[
@@ -29,8 +27,7 @@ import { SelectQuantityComponent } from './utils/select-quantity/select-quantity
     AppComponent,
     LoginComponent,
     CadastroUsuarioComponent,
-    PedidoComponent,
-    SelectQuantityComponent
+    PedidoComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +41,7 @@ import { SelectQuantityComponent } from './utils/select-quantity/select-quantity
     MatDialogModule,
     MatButtonModule,
     MatTableModule,
-    CommonModule,
-    AgGridModule.withComponents([SelectQuantityComponent])
+    CommonModule
     ],
   providers: [
     { 

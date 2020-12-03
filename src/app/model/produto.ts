@@ -3,4 +3,5 @@ export class Produto {
     tipo: string;
     valor: number;
     unidMedida: string;
+    qtd: number;
 }
