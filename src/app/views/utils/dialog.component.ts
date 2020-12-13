@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
     selector: 'dialog-component',
@@ -7,8 +7,17 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
   })
   export class DialogData {
     public message:string = '';
-    constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    public okCancel: boolean = false;
+    
+    constructor(
+      public dialogRef: MatDialogRef<DialogData>,
+      @Inject(MAT_DIALOG_DATA) public data: DialogData) {
       this.message = data.message;
+      this.okCancel = data.okCancel;
+    }
+    
+    onNoClick(): void {
+      this.dialogRef.close();
     }
   }
   

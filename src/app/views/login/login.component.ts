@@ -80,7 +80,8 @@ export class LoginComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogData, {
       data: {
-        message: 'Usuario ou senha incorreto!'
+        message: 'Usuario ou senha incorreto!',
+        okCancel: false
       }
     });
   }

@@ -5,6 +5,11 @@ import { ProdutoService } from 'src/app/services/produto.service';
 import { Produto } from 'src/app/model/produto';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogData } from '../utils/dialog.component';
+import { PedidoService } from 'src/app/services/pedido.service';
+import { ItemPedido } from 'src/app/model/item-pedido';
+import { Pedido } from 'src/app/model/pedido';
 
 @Component({
   selector: 'app-pedido',
@@ -34,7 +39,12 @@ export class PedidoComponent implements AfterViewInit{
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private authenticationService: AuthenticationService, private router: Router, private produtoService: ProdutoService) { }
+  constructor(
+    private authenticationService: AuthenticationService, 
+    private router: Router, 
+    private produtoService: ProdutoService, 
+    private pedidoService: PedidoService,
+    public dialog: MatDialog) { }
 
   logout() {
     this.authenticationService.logout();
@@ -66,4 +76,91 @@ export class PedidoComponent implements AfterViewInit{
     console.log(this.produtos);
     console.log("Valor Total R$" + this.total);
   }
+
+  openDialog() {
+    if (this.haveItems()) {
+      const dialogRef = this.dialog.open(DialogData, {
+        data: {
+          message: 'Deseja confirmar o pedido!',
+          okCancel: true
+        }
+      });
+      
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.pedidoService.sendPedido().subscribe(pedido => {
+            console.log("PEDIDO CRIADO COM SUCESSO!");
+            this.pedidoService.sendItensPedido(this.genetareItensPedido(pedido.id)).subscribe(itensPedido => {
+              console.log("ITEMS DE PEDIDO INCLUIDOS COM SUCESSO!");
+              // itensPedido.forEach(item => {
+              //   console.log(item);
+              
+              // })
+              this.dialog.open(DialogData, {
+                data: {
+                  message: 'Pedido Enviado Com Sucesso!',
+                  okCancel: false
+                }
+              })
+            }, error => {
+              console.log(error);
+              this.dialog.open(DialogData, {
+                data: {
+                  message: 'Erro ao enviar itens do pedido',
+                  okCancel: false
+                }
+              })
+            })
+          }, error => {
+            console.log(error);
+            this.dialog.open(DialogData, {
+              data: {
+                message: 'Erro ao enviar pedido',
+                okCancel: false
+              }
+            })
+          })
+        }
+      });
+    } else {
+      const dialogRef = this.dialog.open(DialogData, {
+        data: {
+          message: 'Você não incluiu nenhum produto!',
+          okCancel: false
+        }
+      });
+    } 
+  }
+
+  genetareItensPedido(idPedido: number):ItemPedido[] {
+    let itemsPedido: ItemPedido[] = [];
+
+    this.produtos.forEach(produto => {
+        if (produto.qtd > 0) {
+          let itemPedido: ItemPedido = new ItemPedido;
+          itemPedido.pedido = new Pedido;
+          itemPedido.produto = new Produto;
+
+          itemPedido.pedido.id = idPedido;
+          itemPedido.produto = produto;
+          itemPedido.qtd = produto.qtd;
+          itemPedido.status = 'A';
+          itemPedido.valor = produto.valor;
+          itemsPedido.push(itemPedido);
+        }
+    })
+
+    return itemsPedido;
+  }
+
+  haveItems(): boolean {
+    let item:boolean = false;
+    this.produtos.forEach(produto => {
+      if (produto.qtd > 0) {
+        item = true;
+      }
+    })
+    return item;
+  }
+  
 }

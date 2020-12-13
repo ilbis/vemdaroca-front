@@ -17,6 +17,7 @@ import { JwtInterceptor } from './guards/jwt.interceptor';
 import { MatTableModule } from '@angular/material/table'
 import { CommonModule } from '@angular/common';
 import { PedidoComponent } from './views/pedido/pedido';
+import { DialogData } from './views/utils/dialog.component';
 
 @NgModule({
   schemas:[
@@ -27,7 +28,8 @@ import { PedidoComponent } from './views/pedido/pedido';
     AppComponent,
     LoginComponent,
     CadastroUsuarioComponent,
-    PedidoComponent
+    PedidoComponent,
+    DialogData
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,11 @@ import { PedidoComponent } from './views/pedido/pedido';
     MatDialogModule,
     MatButtonModule,
     MatTableModule,
-    CommonModule
+    CommonModule,
+    MatButtonModule
+    ],
+    entryComponents: [
+      DialogData
     ],
   providers: [
     { 
