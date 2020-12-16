@@ -88,34 +88,20 @@ export class PedidoComponent implements AfterViewInit{
       
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.pedidoService.sendPedido().subscribe(pedido => {
-            console.log("PEDIDO CRIADO COM SUCESSO!");
-            this.pedidoService.sendItensPedido(this.genetareItensPedido(pedido.id)).subscribe(itensPedido => {
-              console.log("ITEMS DE PEDIDO INCLUIDOS COM SUCESSO!");
-              // itensPedido.forEach(item => {
-              //   console.log(item);
-              
-              // })
-              this.dialog.open(DialogData, {
-                data: {
-                  message: 'Pedido Enviado Com Sucesso!',
-                  okCancel: false
-                }
-              })
-            }, error => {
-              console.log(error);
-              this.dialog.open(DialogData, {
-                data: {
-                  message: 'Erro ao enviar itens do pedido',
-                  okCancel: false
-                }
-              })
+          this.pedidoService.sendItensPedido(this.genetareItensPedido()).subscribe(itensPedido => {
+            console.log("ITEMS DE PEDIDO INCLUIDOS COM SUCESSO!");
+
+            this.dialog.open(DialogData, {
+              data: {
+                message: 'Pedido Enviado Com Sucesso!',
+                okCancel: false
+              }
             })
           }, error => {
             console.log(error);
             this.dialog.open(DialogData, {
               data: {
-                message: 'Erro ao enviar pedido',
+                message: 'Erro ao enviar itens do pedido',
                 okCancel: false
               }
             })
@@ -132,7 +118,7 @@ export class PedidoComponent implements AfterViewInit{
     } 
   }
 
-  genetareItensPedido(idPedido: number):ItemPedido[] {
+  genetareItensPedido():ItemPedido[] {
     let itemsPedido: ItemPedido[] = [];
 
     this.produtos.forEach(produto => {
@@ -141,7 +127,7 @@ export class PedidoComponent implements AfterViewInit{
           itemPedido.pedido = new Pedido;
           itemPedido.produto = new Produto;
 
-          itemPedido.pedido.id = idPedido;
+          // itemPedido.pedido.id = idPedido;
           itemPedido.produto = produto;
           itemPedido.qtd = produto.qtd;
           itemPedido.status = 'A';
