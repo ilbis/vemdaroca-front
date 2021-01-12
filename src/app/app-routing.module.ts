@@ -7,6 +7,7 @@ import { BasicAuthInterceptor } from './guards/basic.auth.interceptor';
 import { ErrorInterceptor } from './guards/error.interceptor';
 import { CadastroUsuarioComponent } from './views/cadastro-usuario/cadastro-usuario';
 import { LoginComponent } from './views/login/login.component';
+import { PedidoFinalizadoComponent } from './views/pedido-finalizado/pedido-finalizado';
 import { PedidoComponent } from './views/pedido/pedido';
 
 const routes: Routes = [
@@ -22,6 +23,11 @@ const routes: Routes = [
   { 
     path: 'pedido',
     component: PedidoComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'pedido-finalizado',
+    component: PedidoFinalizadoComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '' }

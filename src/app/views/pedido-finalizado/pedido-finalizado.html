@@ -1,0 +1,12 @@
+<!-- <button (click)="logout()">Logout</button> -->
+
+<div class="confirm">
+  <h1>Pedido Realizado com Sucesso!</h1>
+  <p>
+    ID DO PEDIDO: {{pedido.id}}
+    <br>
+    VALOR MEDIO TOTAL: {{pedido.total}}
+  </p>
+  <button (click)="novoPedido()">Fazer Outro Pedido</button>
+  <button autofocus (click)="logout()">Encerrar Sessão</button>
+</div>

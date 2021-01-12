@@ -21,6 +21,7 @@ export class PedidoComponent implements AfterViewInit{
   displayedColumns: string[] = ['nome', 'unidMedida', 'valor', 'qtd'];
   produtos:Produto[] = [];
   dataSource = new MatTableDataSource();
+  pedido: Pedido;
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -88,20 +89,23 @@ export class PedidoComponent implements AfterViewInit{
       
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.pedidoService.sendItensPedido(this.genetareItensPedido()).subscribe(itensPedido => {
+          this.pedidoService.sendItensPedido(this.genetareItensPedido()).subscribe(pedido => {
             console.log("ITEMS DE PEDIDO INCLUIDOS COM SUCESSO!");
-
-            this.dialog.open(DialogData, {
-              data: {
-                message: 'Pedido Enviado Com Sucesso!',
-                okCancel: false
-              }
-            })
+            this.pedido = pedido;
+            this.pedidoService.setPedido(pedido);
+            this.pedido.total = this.total;
+            // this.dialog.open(DialogData, {
+            //   data: {
+            //     message: 'Pedido Enviado Com Sucesso!',
+            //     okCancel: false
+            //   }
+            // })
+            this.router.navigate(['/pedido-finalizado']);
           }, error => {
             console.log(error);
             this.dialog.open(DialogData, {
               data: {
-                message: 'Erro ao enviar itens do pedido',
+                message: 'Erro ao Enviar Pedido',
                 okCancel: false
               }
             })

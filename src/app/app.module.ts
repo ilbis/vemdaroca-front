@@ -45,6 +45,7 @@ import { DialogData } from './views/utils/dialog.component';
     MatTableModule,
     CommonModule,
     MatButtonModule
+
     ],
     entryComponents: [
       DialogData
@@ -54,7 +55,7 @@ import { DialogData } from './views/utils/dialog.component';
       provide: HTTP_INTERCEPTORS, 
       useClass: JwtInterceptor, 
       multi: true 
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })

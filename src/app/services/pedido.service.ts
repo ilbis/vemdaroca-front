@@ -9,6 +9,9 @@ import { ItemPedido } from '../model/item-pedido';
 
 @Injectable({ providedIn: 'root' })
 export class PedidoService {
+
+    private pedido: Pedido;
+
     public apiURL = environment.apiUrl;
     constructor(private http: HttpClient, private authentication: AuthenticationService) { }
 
@@ -16,11 +19,19 @@ export class PedidoService {
         return this.http.get<Produto[]>(`${this.apiURL}/produto/allActive`);
     }
 
-    sendPedido (): Observable<Pedido> {
-        return this.http.post<Pedido>(`${this.apiURL}/pedido`, {});
+    // sendPedido (): Observable<Pedido> {
+    //     return this.http.post<Pedido>(`${this.apiURL}/pedido`, {});
+    // }
+
+    sendItensPedido (itemPedido: ItemPedido[]): Observable<Pedido> {
+        return this.http.post<Pedido>(`${this.apiURL}/itempedido/createAll`, itemPedido);
     }
 
-    sendItensPedido (itemPedido: ItemPedido[]): Observable<ItemPedido[]> {
-        return this.http.post<ItemPedido[]>(`${this.apiURL}/itempedido/createAll`, itemPedido);
+    setPedido(pedido:Pedido):void {
+        this.pedido = pedido;
+    }
+
+    getPedido(): Pedido {
+        return this.pedido;
     }
 }
