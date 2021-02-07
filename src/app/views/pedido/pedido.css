@@ -3,10 +3,28 @@
 }
 
 .valorTotal {
-    float: bottom;
-    right: 0%;
+    font-size: 20px;
+    border: black;
+    font-weight: bolder;
+    right: 0px;
+    position: absolute;
+    margin: 10px;
 }
 
 table {
     width: 100%;
+}
+
+
+.logo {
+    width: 108px;
+    height: 90px;
+    /* margin-bottom: 1%; */
+}
+
+.logout {
+    position: absolute;
+    right: 0px;
+    color: white;
+    background: red;
 }
