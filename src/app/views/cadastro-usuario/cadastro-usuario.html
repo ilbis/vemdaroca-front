@@ -1,3 +1,6 @@
+<div class="loading-indicator" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
+</div>
 <div class="bg">
     <div class="label" (click)="back()">
         <span class="material-icons">keyboard_arrow_left</span>

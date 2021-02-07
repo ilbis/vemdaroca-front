@@ -18,6 +18,7 @@ import { MatTableModule } from '@angular/material/table'
 import { CommonModule } from '@angular/common';
 import { PedidoComponent } from './views/pedido/pedido';
 import { DialogData } from './views/utils/dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 @NgModule({
   schemas:[
@@ -44,8 +45,8 @@ import { DialogData } from './views/utils/dialog.component';
     MatButtonModule,
     MatTableModule,
     CommonModule,
-    MatButtonModule
-
+    MatButtonModule,
+    MatProgressSpinnerModule
     ],
     entryComponents: [
       DialogData

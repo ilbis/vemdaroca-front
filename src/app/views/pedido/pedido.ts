@@ -22,10 +22,12 @@ export class PedidoComponent implements AfterViewInit{
   produtos:Produto[] = [];
   dataSource = new MatTableDataSource();
   pedido: Pedido;
+  loading: boolean = false;
 
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
+    this.loading = true;
     this.produtoService.getAll().subscribe(data => {
       data.forEach (value => {
         value.qtd = 0;
@@ -33,6 +35,7 @@ export class PedidoComponent implements AfterViewInit{
       this.produtos = data;
       this.dataSource = new MatTableDataSource(data);
       console.log(data);
+      this.loading = false;
     },
     error => {
       console.log("Erro ao carregar produtos")
@@ -89,6 +92,7 @@ export class PedidoComponent implements AfterViewInit{
       
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
+          this.loading = true;
           this.pedidoService.sendItensPedido(this.genetareItensPedido()).subscribe(pedido => {
             console.log("ITEMS DE PEDIDO INCLUIDOS COM SUCESSO!");
             this.pedido = pedido;
@@ -100,6 +104,7 @@ export class PedidoComponent implements AfterViewInit{
             //     okCancel: false
             //   }
             // })
+            this.loading = false;
             this.router.navigate(['/pedido-finalizado']);
           }, error => {
             console.log(error);

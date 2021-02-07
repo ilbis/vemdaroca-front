@@ -17,6 +17,7 @@ export class CadastroUsuarioComponent implements OnInit {
   cadastroUsuario: FormGroup;
   submitted = false;
   myForm: User;
+  loading: boolean = false;
 
   constructor(private authenticationService: AuthenticationService, private router: Router, private formBuilder: FormBuilder,
     private userService: UserService, public dialog: MatDialog
@@ -54,9 +55,11 @@ export class CadastroUsuarioComponent implements OnInit {
       return String.fromCharCode(("0x" + p1) as any);
     }));
     
+    this.loading = true;
     this.userService.createUser(this.myForm).subscribe((response:any) => {
       this.openDialog("Usuario criado com sucesso")
       this.cadastroUsuario.reset();
+      this.loading = true;
     },err => {
         this.openDialog("Erro ao criar usuario")
       })

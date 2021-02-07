@@ -1,4 +1,3 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,7 +13,7 @@ import { DialogData } from '../utils/dialog.component';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  loading = false;
+  loading: boolean = false;
   submitted = false;
   returnUrl: string;
   error = '';
