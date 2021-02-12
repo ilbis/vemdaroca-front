@@ -6,7 +6,10 @@
         <span class="material-icons">keyboard_arrow_left</span>
         <span class="login">Login</span>
     </div>
-    <span class="registro">Registrar Usuário</span>
+
+    <div class="registro"> 
+        <p>Registrar Usuário</p>
+    </div>
 
     <form [formGroup]="cadastroUsuario" (ngSubmit)="onSubmit()" class="form">
 
@@ -16,7 +19,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="legacy" class="full">
-            <mat-label>Username</mat-label>
+            <mat-label>ID Usuário</mat-label>
             <input matInput required formControlName="username" class="form-control">
         </mat-form-field>
 

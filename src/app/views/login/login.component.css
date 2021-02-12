@@ -64,20 +64,20 @@
     /* margin: 20px 0 0; */
     color: white;
     font-size: 18px;
-    text-align: right;
+    text-align: center;
   }
 
   .register {
     /* position: absolute; */
     margin: 40px;
     left: 51%;
-    color: white;
+    color: green;
     font-size: 18px;
     text-align: center;
   }
 
   .mat-input-element {
-    color: white
+    color: orangered;
   }
 
   :host /deep/ .mat-form-field-appearance-outline .mat-form-field-outline {
@@ -85,7 +85,7 @@
 }
 
 a:visited {
-  color:white;
+  color:orangered;
 }
 
 .mat-raised-button {

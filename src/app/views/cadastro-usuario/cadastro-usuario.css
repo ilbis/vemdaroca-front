@@ -1,5 +1,6 @@
 .bg {
-    /* background-color: rgba(0,0,0,0.1); */
+    background-image: url("../../../assets/Cadastro3.jpg");
+    background-size: auto;
     position: absolute;
     top: 0; 
     left: 0;
@@ -37,6 +38,10 @@
 }
 
 .registro {
+  padding: 70px 70;
+  text-align: center;
+  display: flex;
+  justify-content: center; 
   width: 91px;
   height: 31px;
   font-family: SourceSansPro;
@@ -47,7 +52,7 @@
   line-height: normal;
   letter-spacing: normal;
   /* color: black; */
-  position: relative;
+  position: center;
   top: 25px;
   left: 43px;
 }
@@ -57,7 +62,7 @@
   height: 100%; */
   text-align: center;
   position: relative;
-  top:30px;
+  top: 3px;
 }
 
 .full {
