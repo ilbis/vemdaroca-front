@@ -12,10 +12,10 @@
 .login {
     width: 91px;
     height: 31px;
-    font-family: SourceSansPro;
+    font-family: 'Courier New';
     font-size: 24px;
-    font-weight: normal;
-    font-stretch: normal;
+    font-weight: bold;
+    font-stretch: bold;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
@@ -46,8 +46,8 @@
   height: 31px;
   font-family: SourceSansPro;
   font-size: 24px;
-  font-weight: normal;
-  font-stretch: normal;
+  font-weight: bold;
+  font-stretch: bold;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
@@ -61,6 +61,7 @@
   /* width: 100%;
   height: 100%; */
   text-align: center;
+  font-weight: bold;
   position: relative;
   top: 3px;
 }
