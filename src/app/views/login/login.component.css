@@ -71,9 +71,10 @@
     /* position: absolute; */
     margin: 40px;
     left: 51%;
-    color: green;
+    color:orange;
     font-size: 18px;
     text-align: center;
+    background-color: black;
   }
 
   .mat-input-element {
@@ -81,11 +82,12 @@
   }
 
   :host /deep/ .mat-form-field-appearance-outline .mat-form-field-outline {
-  color:white;
+  color:whitesmoke;
 }
 
 a:visited {
-  color:orangered;
+color: cornsilk;
+
 }
 
 .mat-raised-button {
