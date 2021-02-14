@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         public dialog: MatDialog) {
                  // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 
-          this.router.navigate(['/pedido']);
+          this.router.navigate(['/menu']);
       }
         }
 

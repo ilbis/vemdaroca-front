@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { PedidoComponent } from './views/pedido/pedido';
 import { DialogData } from './views/utils/dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import { MenuComponent } from './views/menu/menu';
 
 @NgModule({
   schemas:[
@@ -30,6 +31,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoginComponent,
     CadastroUsuarioComponent,
     PedidoComponent,
+    MenuComponent,
     DialogData
   ],
   imports: [

@@ -38,7 +38,9 @@ export class PedidoComponent implements AfterViewInit{
       this.loading = false;
     },
     error => {
+      this.loading = false;
       console.log("Erro ao carregar produtos")
+      this.logout();
     })
     this.dataSource.sort = this.sort;
   }
@@ -53,6 +55,10 @@ export class PedidoComponent implements AfterViewInit{
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
+  }
+
+  menu() {
+    this.router.navigate(['/menu']);
   }
 
   add(produto: Produto) {
@@ -98,12 +104,6 @@ export class PedidoComponent implements AfterViewInit{
             this.pedido = pedido;
             this.pedidoService.setPedido(pedido);
             this.pedido.total = this.total;
-            // this.dialog.open(DialogData, {
-            //   data: {
-            //     message: 'Pedido Enviado Com Sucesso!',
-            //     okCancel: false
-            //   }
-            // })
             this.loading = false;
             this.router.navigate(['/pedido-finalizado']);
           }, error => {

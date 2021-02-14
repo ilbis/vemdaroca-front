@@ -1,0 +1,11 @@
+<div class="loading-indicator" *ngIf="loading">
+  <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
+</div>
+<img class="logo" src="../../../assets/logo.png">
+<button mat-raised-button class="logout" (click)="logout()">Logout</button>
+
+<div class="menu">
+  <div><button mat-raised-button class="botao" (click)="novoPedido()">Novo Pedido</button><br><br></div>
+  <div *ngIf="userAdmin"><button mat-raised-button class="botao">Cadastrar ou Editar Produtos</button><br><br></div>
+  <div><button mat-raised-button class="botao">Editar Cadastro</button><br><br></div>
+</div>
