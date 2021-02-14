@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../model/user';
+import jwt_decode from "jwt-decode";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -34,7 +35,6 @@ export class AuthenticationService {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 this.userWithToken = response;
                 localStorage.setItem('currentUser', JSON.stringify(response));
-                console.log(JSON.stringify(response));
                 localStorage.setItem('token', response.headers.get('Authorization'));
 
                 this.currentUserSubject.next(response);
@@ -50,6 +50,10 @@ export class AuthenticationService {
 
     getToken():any{
         return localStorage.getItem('token');
+    }
+
+    getRole(): string {
+        return jwt_decode(localStorage.getItem('token'))['auth'];
     }
 
 }

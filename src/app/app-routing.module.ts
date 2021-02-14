@@ -11,7 +11,10 @@ import { PedidoFinalizadoComponent } from './views/pedido-finalizado/pedido-fina
 import { PedidoComponent } from './views/pedido/pedido';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, canActivate: [AuthGuard]},
+  { 
+    path: '', 
+    component: LoginComponent
+  },
   { 
     path: 'login',
     component: LoginComponent
