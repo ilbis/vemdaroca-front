@@ -1,5 +1,5 @@
 .quantity {
-    width: 60px;
+    width: 30px;
 }
 
 .valorTotal {
@@ -36,6 +36,13 @@ table {
     background: black;
 }
 
+.novo-produto {
+    position: absolute;
+    right: 0px;
+    top: 60px;
+    color: white;
+    background: green;
+}
 /* Absolute Center Spinner */
 .loading-indicator {
     position: fixed;
@@ -61,6 +68,30 @@ table {
     height: 100%;
     background-color: rgba(0,0,0,0.3);
   }
+  
+.nome {
+    width: 250px;
+}
+
+.valor {
+    width: 50px;
+}
+
+.tipo {
+    width: 150px !important;
+}
+
+.unidMedida {
+    width: 100px !important;
+}
+
+.valor {
+    width: 80px !important;
+}
+
+.status {
+    width: 50px !important;
+}
 
 ::ng-deep .mat-form-field-wrapper {
     padding-bottom: 0px;

@@ -28,4 +28,9 @@ export class MenuComponent implements OnInit{
   novoPedido() {
     this.router.navigate(['/pedido']);
   }
+
+  editarProdutos() {
+    this.router.navigate(['/produto']);
+
+  }
 }

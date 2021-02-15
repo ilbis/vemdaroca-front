@@ -72,7 +72,9 @@ export class CadastroUsuarioComponent implements OnInit {
   openDialog(text: string) {
     this.dialog.open(DialogData, {
       data: {
-        message: text
+        message: text,
+        tipo: 'default',
+        title: 'Atenção!'
       }
     });
   }

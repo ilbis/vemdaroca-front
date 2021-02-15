@@ -1,0 +1,79 @@
+<div class="loading-indicator" *ngIf="loading">
+  <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
+</div>
+<img class="logo" src="../../../assets/logo.png">
+<button mat-raised-button class="menu" (click)="menu()">Voltar ao Menu</button>
+<button mat-raised-button class="logout" (click)="logout()">Logout</button>
+
+<button mat-raised-button class="novo-produto" (click)="novoProduto()">Adicionar Novo Produto</button>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="name"> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Nome" name="nome" required [(ngModel)]=element.nome>
+        </mat-form-field>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="fill" class="tipo">
+        <mat-select matNativeControl name="tipo" [(ngModel)]="element.tipo">
+          <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+            {{tipo}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="unidMedida">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Unid. Medida </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="fill" class="unidMedida">
+        <mat-select matNativeControl name="unidMedida" [(ngModel)]="element.unidMedida">
+          <mat-option *ngFor="let unid of unidMedida" [value]="unid">
+            {{unid}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor R$</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="fill" class="valor">
+          <input matInput placeholder="Valor" required [(ngModel)]=element.valor>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="fill" class="status">
+        <mat-select matNativeControl name="status" [(ngModel)]="element.status">
+          <mat-option *ngFor="let x of status" [value]="x">
+            {{x}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<button mat-raised-button color="accent" (click)="atualizarProdutos()">Atualizar Produtos</button>
