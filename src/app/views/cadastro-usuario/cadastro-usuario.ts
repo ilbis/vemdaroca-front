@@ -56,22 +56,12 @@ export class CadastroUsuarioComponent implements OnInit {
     
     this.loading = true;
     this.userService.createUser(this.myForm).subscribe((response:any) => {
-<<<<<<< HEAD
       this.openDialog("Oba! Usuario Criado Com Sucesso!")
-=======
-      this.openDialog("Usuario criado com sucesso, você receberá um email de ativação");
->>>>>>> 3ee46c3f98fa623283f782a3af2f5be0a1676dc6
       this.cadastroUsuario.reset();
       this.loading = false;
     },err => {
-<<<<<<< HEAD
         this.openDialog("Erro ao criar usuario! Por gentileza tente mais tarde!")
       })
-=======
-      this.loading = false;
-      this.openDialog("Erro ao criar usuario")
-    })
->>>>>>> 3ee46c3f98fa623283f782a3af2f5be0a1676dc6
   }
 
   back() {
