@@ -1,6 +1,7 @@
 .logo {
     width: 108px;
     height: 90px;
+    background-image: url("../../../assets/background.jpg");
     /* margin-bottom: 1%; */
 }
 
