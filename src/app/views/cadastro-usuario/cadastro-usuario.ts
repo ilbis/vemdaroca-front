@@ -7,7 +7,6 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 import { DialogData } from '../utils/dialog.component';
 
-
 @Component({
   selector: 'app-cadastro-usuario',
   templateUrl: './cadastro-usuario.html',
@@ -57,11 +56,11 @@ export class CadastroUsuarioComponent implements OnInit {
     
     this.loading = true;
     this.userService.createUser(this.myForm).subscribe((response:any) => {
-      this.openDialog("Usuario criado com sucesso")
+      this.openDialog("Oba! Usuario Criado Com Sucesso!")
       this.cadastroUsuario.reset();
       this.loading = true;
     },err => {
-        this.openDialog("Erro ao criar usuario")
+        this.openDialog("Erro ao criar usuario! Por gentileza tente mais tarde!")
       })
   }
 
