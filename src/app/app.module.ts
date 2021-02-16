@@ -23,6 +23,8 @@ import { MenuComponent } from './views/menu/menu';
 import { ListaProdutoComponent } from './views/lista-produto/lista-produto';
 import { MatSelectModule } from '@angular/material/select';
 import { EditarUsuarioComponent } from './views/editar-usuario/editar-usuario';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   schemas:[
@@ -55,7 +57,9 @@ import { EditarUsuarioComponent } from './views/editar-usuario/editar-usuario';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     ],
     entryComponents: [
       DialogData

@@ -33,5 +33,9 @@ export class PedidoService {
 
     getPedido(): Pedido {
         return this.pedido;
+    }    
+
+    getRelatorio (date): Observable<any> {
+        return this.http.post(`${this.apiURL}/pedido/relatorio`, date, { responseType: 'blob' });
     }
 }

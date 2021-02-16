@@ -10,6 +10,23 @@
   </mat-form-field>
 </div>
 
+<div mat-dialog-content *ngIf="tipo == 'relatorio'">
+  <mat-form-field appearance="fill">
+    <mat-label>Selecione o periodo do relatorio</mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Data Inicio">
+      <input matEndDate formControlName="end" placeholder="Data Final">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  
+    <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Data Inicio Invalido</mat-error>
+    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Data Final Invalido</mat-error>
+  </mat-form-field>
+
+</div>
+
+
 <div mat-dialog-content *ngIf="tipo == 'novoProduto'">
 
   <mat-form-field appearance="fill">
@@ -72,4 +89,9 @@
 <div mat-dialog-actions *ngIf="tipo == 'recuperacaoSenha'">
   <button mat-button (click)="onNoClick()">Cancelar</button>
   <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="enviarEmail()">Confirmar</button>
+</div>
+
+<div mat-dialog-actions *ngIf="tipo == 'relatorio'">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="enviarRelatorio()">Confirmar</button>
 </div>

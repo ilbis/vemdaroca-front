@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Produto } from 'src/app/model/produto';
 
@@ -7,6 +8,11 @@ import { Produto } from 'src/app/model/produto';
     templateUrl: 'dialog.component.html',
   })
   export class DialogData {
+    range = new FormGroup({
+      start: new FormControl(),
+      end: new FormControl()
+    });
+    
     public message:string;
     public tipo: string;
     public title: string;
@@ -37,6 +43,10 @@ import { Produto } from 'src/app/model/produto';
 
     enviarEmail() {
       this.dialogRef.close(this.email);
+    }
+
+    enviarRelatorio() {
+      this.dialogRef.close(this.range.value);
     }
   }
   
