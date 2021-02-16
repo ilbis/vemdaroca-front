@@ -40,7 +40,7 @@
 
 .menu {
   background-image: url("../../../assets/background.jpg");
-  position: center;
+ /* position: center;
   /* z-index: 1;
   max-width: 650px;
   margin: 0 auto 0px;
