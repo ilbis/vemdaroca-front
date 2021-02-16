@@ -10,6 +10,7 @@ import { Produto } from 'src/app/model/produto';
     public message:string;
     public tipo: string;
     public title: string;
+    public email: string;
     public tiposProdutos: string[] = [];
     public unidMedida: string[] = [];
     public status: string[] = [];
@@ -32,6 +33,10 @@ import { Produto } from 'src/app/model/produto';
 
     enviarProduto() {
       this.dialogRef.close(this.produto);
+    }
+
+    enviarEmail() {
+      this.dialogRef.close(this.email);
     }
   }
   

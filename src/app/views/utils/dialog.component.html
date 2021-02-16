@@ -1,6 +1,13 @@
 <h1 mat-dialog-title>{{title}}</h1>
-<div mat-dialog-content *ngIf="tipo == 'default' || tipo == 'okCancel'">
+<div mat-dialog-content *ngIf="tipo == 'default' || tipo == 'okCancel' || tipo =='recuperacaoSenha'">
   {{ message }}
+</div>
+
+<div mat-dialog-content *ngIf="tipo == 'recuperacaoSenha'">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" name="email" required [(ngModel)]=email>
+  </mat-form-field>
 </div>
 
 <div mat-dialog-content *ngIf="tipo == 'novoProduto'">
@@ -60,4 +67,9 @@
 <div mat-dialog-actions *ngIf="tipo == 'novoProduto'">
   <button mat-button (click)="onNoClick()">Cancelar</button>
   <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="enviarProduto()">Confirmar</button>
+</div>
+
+<div mat-dialog-actions *ngIf="tipo == 'recuperacaoSenha'">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="enviarEmail()">Confirmar</button>
 </div>
