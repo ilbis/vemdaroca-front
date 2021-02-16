@@ -62,13 +62,13 @@ export class PedidoComponent implements AfterViewInit{
   }
 
   add(produto: Produto) {
-    produto.qtd +=1;   
+    produto.qtd = parseInt(produto.qtd.toString()) +1;   
     this.updateValue(); 
   }
 
   remove(produto: Produto) {
     if (produto.qtd>0) {
-      produto.qtd -=1;
+      produto.qtd = parseInt(produto.qtd.toString()) -1;
       this.updateValue();
     }
   }

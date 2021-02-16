@@ -32,7 +32,7 @@
       <td mat-cell *matCellDef="let element">
         <i class="material-icons" (click)="remove(element)">remove_circle</i>
         <mat-form-field appearance="fill" class="quantity">
-          <input matInput placeholder="Qtd" required [value]=element.qtd>
+          <input matInput placeholder="Qtd" required [(ngModel)]=element.qtd (change)="updateValue()">
         </mat-form-field>
         <i class="material-icons" (click)="add(element)">add_circle</i>
         </td>

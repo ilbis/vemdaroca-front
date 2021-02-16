@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit{
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.userAdmin = this.authenticationService.getRole() ? true : false;
+    this.userAdmin = this.authenticationService.getRole() == 'ROLE_ADMIN' ? true : false;
   }
 
   logout() {

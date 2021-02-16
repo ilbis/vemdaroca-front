@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { EmailService } from 'src/app/services/email.service';
+import { UserService } from 'src/app/services/user.service';
 import { DialogData } from '../utils/dialog.component';
 
 @Component({
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private emailService: EmailService,
+        private userService: UserService,
         public dialog: MatDialog) {
                  // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
       if(email != undefined) {
         this.loading = true;
         console.log(email)
-        this.emailService.sendEmail(email).subscribe(produto => {
+        this.userService.sendEmail(email).subscribe(produto => {
 
           this.loading = false;
           this.dialog.open(DialogData, {
