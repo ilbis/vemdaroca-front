@@ -2,6 +2,7 @@
     width: 108px;
     height: 90px;
     background-image: url("../../../assets/background.jpg");
+    position: absolute;
     /* margin-bottom: 1%; */
 }
 
