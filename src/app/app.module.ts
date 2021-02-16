@@ -22,6 +22,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MenuComponent } from './views/menu/menu';
 import { ListaProdutoComponent } from './views/lista-produto/lista-produto';
 import { MatSelectModule } from '@angular/material/select';
+import { EditarUsuarioComponent } from './views/editar-usuario/editar-usuario';
 
 @NgModule({
   schemas:[
@@ -35,6 +36,7 @@ import { MatSelectModule } from '@angular/material/select';
     PedidoComponent,
     MenuComponent,
     ListaProdutoComponent,
+    EditarUsuarioComponent,
     DialogData
   ],
   imports: [

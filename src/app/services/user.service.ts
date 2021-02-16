@@ -4,7 +4,6 @@ import { User } from '../model/user';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
-
 @Injectable({ providedIn: 'root' })
 export class UserService {
     public apiURL = environment.apiUrl;
@@ -14,7 +13,15 @@ export class UserService {
         return this.http.post<User>(`${this.apiURL}/cliente`,user,{ headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
     }
 
+    updateUser (user: User) {
+        return this.http.put<User>(`${this.apiURL}/cliente/userOnSession`,user);
+    }
+
     sendEmail(email:string): Observable<string>{
         return this.http.post<string>(`${this.apiURL}/cliente/recuperaCadastro`,email);
+    }
+
+    getUser(): Observable<User>{
+        return this.http.get<User>(`${this.apiURL}/cliente/userOnSession`);
     }
 }

@@ -1,0 +1,78 @@
+<div class="loading-indicator" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
+</div>
+<img class="logo" src="../../../assets/logo.png">
+<button mat-raised-button class="menu" (click)="menu()">Voltar ao Menu</button>
+<button mat-raised-button class="logout" (click)="logout()">Logout</button>
+
+    <form [formGroup]="editarUsuario" (ngSubmit)="onSubmit()" class="form">
+    
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Nome Completo</mat-label>
+            <input matInput required formControlName="nome" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>ID Usuário</mat-label>
+            <input matInput required formControlName="username" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Email</mat-label>
+            <input matInput required formControlName="email" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Celular/WhatsApp</mat-label>
+            <input matInput required formControlName="tel" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>CEP</mat-label>
+            <input matInput required formControlName="cep" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Rua</mat-label>
+            <input matInput required formControlName="rua" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Número</mat-label>
+            <input matInput required formControlName="numero" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Complemento</mat-label>
+            <input matInput formControlName="complemento" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Bairro</mat-label>
+            <input matInput required formControlName="bairro" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>Cidade</mat-label>
+            <input matInput required formControlName="cidade" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="middle">
+            <mat-label>UF</mat-label>
+            <input matInput required formControlName="uf" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Senha</mat-label>
+            <input matInput required formControlName="password" class="form-control" type="password">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="full">
+            <mat-label>Comfirmar Senha</mat-label>
+            <input matInput required formControlName="confirmPassword" class="form-control" type="password">
+            <!-- <div *ngIf="f.confirmPassword.errors.mustMatch">As senhas não conferem</div> -->
+        </mat-form-field>
+
+        <button mat-raised-button color="accent">Atualizar Usuario</button>
+    </form>
+

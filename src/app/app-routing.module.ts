@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { BasicAuthInterceptor } from './guards/basic.auth.interceptor';
 import { ErrorInterceptor } from './guards/error.interceptor';
 import { CadastroUsuarioComponent } from './views/cadastro-usuario/cadastro-usuario';
+import { EditarUsuarioComponent } from './views/editar-usuario/editar-usuario';
 import { ListaProdutoComponent } from './views/lista-produto/lista-produto';
 import { LoginComponent } from './views/login/login.component';
 import { MenuComponent } from './views/menu/menu';
@@ -38,6 +39,11 @@ const routes: Routes = [
   { 
     path: 'pedido',
     component: PedidoComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'editar-usuario',
+    component: EditarUsuarioComponent,
     canActivate: [AuthGuard]
   },
   { 
