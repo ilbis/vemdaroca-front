@@ -1,8 +1,75 @@
-<h1 mat-dialog-title>Aviso</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content *ngIf="tipo == 'default' || tipo == 'okCancel' || tipo =='recuperacaoSenha'">
   {{ message }}
 </div>
-<div mat-dialog-actions *ngIf="okCancel">
+
+<div mat-dialog-content *ngIf="tipo == 'recuperacaoSenha'">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" name="email" required [(ngModel)]=email>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-content *ngIf="tipo == 'novoProduto'">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Nome" name="nomeProduto" required [(ngModel)]=produto.nome>
+  </mat-form-field>
+
+  <br><br>
+
+  <mat-form-field appearance="fill" class="tipo">
+    <mat-label>Tipo</mat-label>
+    <mat-select matNativeControl name="tipoProduto" [(ngModel)]="produto.tipo">
+      <mat-option *ngFor="let tipoProduto of tiposProdutos" [value]="tipoProduto">
+        {{tipoProduto}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br><br>
+
+  <mat-form-field appearance="fill" class="unidMedida">
+    <mat-label>Unid. Medida</mat-label>
+    <mat-select matNativeControl name="unidMedidaProduto" [(ngModel)]="produto.unidMedida">
+      <mat-option *ngFor="let unid of unidMedida" [value]="unid">
+        {{unid}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br><br>
+
+  <mat-form-field appearance="fill" class="valor">
+    <mat-label>Valor</mat-label>
+    <input matInput placeholder="Valor" required [(ngModel)]=produto.valor>
+  </mat-form-field>
+
+  <br><br>
+
+  <mat-form-field appearance="fill" class="status">
+    <mat-label>Status</mat-label>
+    <mat-select matNativeControl name="status" [(ngModel)]="produto.status">
+      <mat-option *ngFor="let x of status" [value]="x">
+        {{x}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions *ngIf="tipo == 'okCancel'">
   <button mat-button (click)="onNoClick()">Cancelar</button>
   <button mat-button cdkFocusInitial [mat-dialog-close]="true">Confirmar</button>
+</div>
+
+<div mat-dialog-actions *ngIf="tipo == 'novoProduto'">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="enviarProduto()">Confirmar</button>
+</div>
+
+<div mat-dialog-actions *ngIf="tipo == 'recuperacaoSenha'">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="enviarEmail()">Confirmar</button>
 </div>

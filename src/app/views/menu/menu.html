@@ -1,0 +1,9 @@
+<img class="logo" src="../../../assets/logo.png">
+<button mat-raised-button class="logout" (click)="logout()">Logout</button>
+
+<div class="menu">
+  <div><button mat-raised-button class="botao" (click)="novoPedido()">Novo Pedido</button><br><br></div>
+  <div *ngIf="userAdmin"><button mat-raised-button class="botao" (click)="editarProdutos()">Cadastrar ou Editar Produtos</button><br><br></div>
+  <div><button mat-raised-button class="botao" (click)="editarUsuario()">Editar Cadastro</button><br><br></div>
+  <div *ngIf="userAdmin"><button mat-raised-button class="botao">Gerar Relatório de Pedidos</button><br><br></div>
+</div>

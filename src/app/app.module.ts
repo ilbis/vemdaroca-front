@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; 
 import { MatIconModule } from '@angular/material/icon'; 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CadastroUsuarioComponent } from './views/cadastro-usuario/cadastro-usuario';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +19,10 @@ import { CommonModule } from '@angular/common';
 import { PedidoComponent } from './views/pedido/pedido';
 import { DialogData } from './views/utils/dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import { MenuComponent } from './views/menu/menu';
+import { ListaProdutoComponent } from './views/lista-produto/lista-produto';
+import { MatSelectModule } from '@angular/material/select';
+import { EditarUsuarioComponent } from './views/editar-usuario/editar-usuario';
 
 @NgModule({
   schemas:[
@@ -30,6 +34,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoginComponent,
     CadastroUsuarioComponent,
     PedidoComponent,
+    MenuComponent,
+    ListaProdutoComponent,
+    EditarUsuarioComponent,
     DialogData
   ],
   imports: [
@@ -46,7 +53,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatTableModule,
     CommonModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    FormsModule
     ],
     entryComponents: [
       DialogData

@@ -28,7 +28,7 @@ export class PedidoComponent implements AfterViewInit{
 
   ngAfterViewInit() {
     this.loading = true;
-    this.produtoService.getAll().subscribe(data => {
+    this.produtoService.getAllActive().subscribe(data => {
       data.forEach (value => {
         value.qtd = 0;
       })
@@ -38,7 +38,9 @@ export class PedidoComponent implements AfterViewInit{
       this.loading = false;
     },
     error => {
+      this.loading = false;
       console.log("Erro ao carregar produtos")
+      this.logout();
     })
     this.dataSource.sort = this.sort;
   }
@@ -55,14 +57,18 @@ export class PedidoComponent implements AfterViewInit{
     this.router.navigate(['/login']);
   }
 
+  menu() {
+    this.router.navigate(['/menu']);
+  }
+
   add(produto: Produto) {
-    produto.qtd +=1;   
+    produto.qtd = parseInt(produto.qtd.toString()) +1;   
     this.updateValue(); 
   }
 
   remove(produto: Produto) {
     if (produto.qtd>0) {
-      produto.qtd -=1;
+      produto.qtd = parseInt(produto.qtd.toString()) -1;
       this.updateValue();
     }
   }
@@ -81,12 +87,13 @@ export class PedidoComponent implements AfterViewInit{
     console.log("Valor Total R$" + this.total);
   }
 
-  openDialog() {
+  enviarPedido() {
     if (this.haveItems()) {
       const dialogRef = this.dialog.open(DialogData, {
         data: {
+          title: 'Atenção!',
           message: 'Deseja confirmar o pedido!',
-          okCancel: true
+          tipo: 'okCancel'
         }
       });
       
@@ -98,20 +105,15 @@ export class PedidoComponent implements AfterViewInit{
             this.pedido = pedido;
             this.pedidoService.setPedido(pedido);
             this.pedido.total = this.total;
-            // this.dialog.open(DialogData, {
-            //   data: {
-            //     message: 'Pedido Enviado Com Sucesso!',
-            //     okCancel: false
-            //   }
-            // })
             this.loading = false;
             this.router.navigate(['/pedido-finalizado']);
           }, error => {
             console.log(error);
             this.dialog.open(DialogData, {
               data: {
+                title: 'Poxa Vida!',
                 message: 'Erro ao Enviar Pedido',
-                okCancel: false
+                tipo: 'default'
               }
             })
           })
@@ -120,8 +122,9 @@ export class PedidoComponent implements AfterViewInit{
     } else {
       const dialogRef = this.dialog.open(DialogData, {
         data: {
+          title: 'Atenção!',
           message: 'Você não incluiu nenhum produto!',
-          okCancel: false
+          tipo: 'default'
         }
       });
     } 

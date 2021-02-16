@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UserService } from 'src/app/services/user.service';
 import { DialogData } from '../utils/dialog.component';
 
 @Component({
@@ -24,10 +25,11 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
+        private userService: UserService,
         public dialog: MatDialog) {
                  // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 
-          this.router.navigate(['/pedido']);
+          this.router.navigate(['/menu']);
       }
         }
 
@@ -56,17 +58,59 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.convertBase64(this.f.password.value))
-        .pipe(first())
-        .subscribe(
-          data => {
-              this.router.navigate([this.returnUrl]);
-            },
-            error => {
-                this.error = error;
-                this.loading = false;
-                this.openDialog();
-                console.log("Usuario ou senha incorretos")
-            });
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.loading = false;
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.error = error;
+          this.loading = false;
+          this.dialog.open(DialogData, {
+            data: {
+              title: 'Atenção',
+              message: 'Usuario ou senha incorreto!',
+              tipo: 'default'
+            }
+          });
+        });
+  }
+
+  esqueceuSenha() {
+    const dialogRef = this.dialog.open(DialogData, {
+      data: {
+        title: 'Recuperação de Senha',
+        message: 'Digite o seu email que enviaremos uma nova senha!',
+        tipo: 'recuperacaoSenha'
+      }
+    });
+    dialogRef.afterClosed().subscribe(email => {
+      if(email != undefined) {
+        this.loading = true;
+        console.log(email)
+        this.userService.sendEmail(email).subscribe(produto => {
+
+          this.loading = false;
+          this.dialog.open(DialogData, {
+            data: {
+              title: 'Legal!',
+              message: 'Email Enviado com Sucesso!',
+              tipo: 'default'
+            }
+          });
+        },error => {
+          console.log(error);
+          this.loading = false;
+          this.dialog.open(DialogData, {
+            data: {
+              title: 'Poxa Vida!',
+              message: 'Erro ao Enviar Email de Recuperação',
+              tipo: 'default'
+            }
+          });
+        })
+      }})
   }
 
   convertBase64(password:string): string {
@@ -75,14 +119,5 @@ export class LoginComponent implements OnInit {
         return String.fromCharCode(("0x" + p1) as any);
       }))
   }; 
-
-  openDialog() {
-    this.dialog.open(DialogData, {
-      data: {
-        message: 'Usuario ou senha incorreto!',
-        okCancel: false
-      }
-    });
-  }
 
 }

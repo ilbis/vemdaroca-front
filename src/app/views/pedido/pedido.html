@@ -2,6 +2,7 @@
   <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
 </div>
 <img class="logo" src="../../../assets/logo.png">
+<button mat-raised-button class="menu" (click)="menu()">Voltar ao Menu</button>
 <button mat-raised-button class="logout" (click)="logout()">Logout</button>
 
 <div class="mat-elevation-z8">
@@ -30,7 +31,9 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Qtd. </th>
       <td mat-cell *matCellDef="let element">
         <i class="material-icons" (click)="remove(element)">remove_circle</i>
-        <input class="quantity" type="text" value={{element.qtd}}>
+        <mat-form-field appearance="fill" class="quantity">
+          <input matInput placeholder="Qtd" required [(ngModel)]=element.qtd (change)="updateValue()">
+        </mat-form-field>
         <i class="material-icons" (click)="add(element)">add_circle</i>
         </td>
     </ng-container>
@@ -41,4 +44,4 @@
 </div>
 
 <div class="valorTotal">MÉDIA TOTAL R${{ total | number:'1.2'}} </div>
-<button mat-raised-button color="accent" (click)="openDialog()">Finalizar Pedido</button>
+<button mat-raised-button color="accent" (click)="enviarPedido()">Finalizar Pedido</button>

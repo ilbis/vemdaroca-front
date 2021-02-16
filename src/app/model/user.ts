@@ -5,7 +5,8 @@ export class User {
     tel: string;
     cep: string;
     rua: string;
-    complement: string;
+    numero:string;
+    complemento: string;
     bairro: string;
     cidade: string;
     uf: string;
