@@ -1,7 +1,7 @@
 .logo {
     width: 108px;
     height: 90px;
-    position: absolute;
+    background-image: url("../../../assets/background.jpg");
     /* margin-bottom: 1%; */
 }
 
@@ -39,13 +39,8 @@
   }
 
 .menu {
+  position: relative;
   background-image: url("../../../assets/background.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-  
-    /*position: relative;
   /* z-index: 1;
   max-width: 650px;
   margin: 0 auto 0px;
