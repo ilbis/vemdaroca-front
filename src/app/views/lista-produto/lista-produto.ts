@@ -14,7 +14,7 @@ import { DialogData } from '../utils/dialog.component';
   styleUrls: ['./lista-produto.css']
 })
 export class ListaProdutoComponent implements AfterViewInit{
-  displayedColumns: string[] = ['id', 'nome', 'tipo', 'unidMedida', 'valor', 'status'];
+  displayedColumns: string[] = ['id', 'nome', 'tipo', 'unidMedida', 'valor', 'status', 'remover'];
   produtos:Produto[] = [];
   dataSource = new MatTableDataSource();
   loading: boolean = false;
@@ -139,6 +139,43 @@ export class ListaProdutoComponent implements AfterViewInit{
             data: {
               title: 'Poxa Vida!',
               message: 'Erro ao Atualizar Produtos',
+              tipo: 'default'
+            }
+          });
+        })
+      }
+    });
+  }
+
+  deleteProdudo(id:number) {
+    const dialogRef = this.dialog.open(DialogData, {
+      data: {
+        title: 'Atenção!',
+        message: 'Deseja mesmo remover esse produto?',
+        tipo: 'okCancel'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loading = true;
+        this.produtoService.deleteProduto(id).subscribe(produto => {
+          console.log("PRODUTOS REMOVIDO COM SUCESSO!");
+          this.produtos = this.produtos.filter(produto => produto.id !== id);
+          this.dataSource = new MatTableDataSource(this.produtos);
+          this.loading = false;
+          this.dialog.open(DialogData, {
+            data: {
+              title: 'Legal!',
+              message: 'Produto Removido com Sucesso!',
+              tipo: 'default'
+            }
+          });
+        }, error => {
+          console.log(error);
+          this.dialog.open(DialogData, {
+            data: {
+              title: 'Poxa Vida!',
+              message: 'Erro ao Remover Produto',
               tipo: 'default'
             }
           });
