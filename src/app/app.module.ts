@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { EditarUsuarioComponent } from './views/editar-usuario/editar-usuario';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   schemas:[
@@ -59,7 +60,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    TextMaskModule
     ],
     entryComponents: [
       DialogData

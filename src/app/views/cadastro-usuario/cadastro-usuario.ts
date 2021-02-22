@@ -13,6 +13,9 @@ import { DialogData } from '../utils/dialog.component';
   styleUrls: ['./cadastro-usuario.css']
 })
 export class CadastroUsuarioComponent implements OnInit {
+  telMask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  cepMask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+
   cadastroUsuario: FormGroup;
   submitted = false;
   myForm: User;
@@ -20,48 +23,50 @@ export class CadastroUsuarioComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService, private router: Router, private formBuilder: FormBuilder,
     private userService: UserService, public dialog: MatDialog
-    ) { }
+  ) { }
 
-    ngOnInit() {
-      this.cadastroUsuario = this.formBuilder.group({
-          nome: ['', Validators.required],
-          username: ['', Validators.required],
-          email: ['', Validators.required],
-          tel: ['', Validators.required],
-          cep: ['', Validators.required],
-          rua: ['', Validators.required],
-          numero: ['', Validators.required],
-          complemento: ['', Validators.required],
-          bairro: ['', Validators.required],
-          cidade: ['', Validators.required],
-          uf: ['', Validators.required],
-          password: ['', Validators.required],
-          confirmPassword: ['', Validators.required]
-      });
-    }
+  ngOnInit() {
+    this.cadastroUsuario = this.formBuilder.group({
+      nome: ['', Validators.required],
+      username: ['', Validators.required],
+      email: ['', Validators.email],
+      tel: ['', Validators.required],
+      cep: ['', Validators.required],
+      rua: ['', Validators.required],
+      numero: ['', Validators.required],
+      complemento: ['', Validators.required],
+      bairro: ['', Validators.required],
+      cidade: ['', Validators.required],
+      uf: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    });
+  }
 
   onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.cadastroUsuario.invalid) {
-        return;
+      return;
     }
 
     this.myForm = this.cadastroUsuario.value;
     this.myForm.password = btoa(encodeURIComponent(this.myForm.password).replace(/%([0-9A-F]{2})/g,
-    (match, p1) => {
-      return String.fromCharCode(("0x" + p1) as any);
-    }));
-    
+      (match, p1) => {
+        return String.fromCharCode(("0x" + p1) as any);
+      }));
+
     this.loading = true;
-    this.userService.createUser(this.myForm).subscribe((response:any) => {
+    this.userService.createUser(this.myForm).subscribe((response: any) => {
       this.openDialog("Oba! Usuario Criado Com Sucesso!")
-      this.cadastroUsuario.reset();
+      // this.cadastroUsuario.reset();
       this.loading = false;
-    },err => {
-        this.openDialog("Erro ao criar usuario! Por gentileza tente mais tarde!")
-      })
+      this.back();
+    }, err => {
+      this.loading = false;
+      this.openDialog("Erro ao criar usuario! Por gentileza tente mais tarde!")
+    })
   }
 
   back() {

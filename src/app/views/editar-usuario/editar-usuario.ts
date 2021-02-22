@@ -14,6 +14,9 @@ import { DialogData } from '../utils/dialog.component';
   styleUrls: ['./editar-usuario.css']
 })
 export class EditarUsuarioComponent implements OnInit {
+  telMask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  cepMask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+
   editarUsuario: FormGroup = new FormGroup({
     nome:new FormControl(),
     username: new FormControl(),
@@ -48,7 +51,7 @@ export class EditarUsuarioComponent implements OnInit {
       this.editarUsuario = this.formBuilder.group({
           nome: [this.user.nome, Validators.required],
           username: [this.user.username, Validators.required],
-          email: [this.user.email, Validators.required],
+          email: [this.user.email, Validators.email],
           tel: [this.user.tel, Validators.required],
           cep: [this.user.cep, Validators.required],
           rua: [this.user.rua, Validators.required],
