@@ -65,7 +65,8 @@
     color: white;
     font-size: 18px;
     text-align: center;
-    background-color: black;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    /* background-color: black; */
   }
 
   .register {
@@ -75,7 +76,8 @@
     color:orange;
     font-size: 18px;
     text-align: center;
-    background-color: black;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    /* background-color: black; */
   }
 
   .mat-input-element {
