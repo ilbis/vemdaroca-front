@@ -11,5 +11,6 @@ export class User {
     cidade: string;
     uf: string;
     password: string;
+    confirmPassword?: string
     token?: string;
 }

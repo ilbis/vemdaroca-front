@@ -47,13 +47,13 @@ export class CadastroUsuarioComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.cadastroUsuario.invalid) {
       return;
     }
 
     this.myForm = this.cadastroUsuario.value;
+    this.myForm.confirmPassword = '';
     this.myForm.password = btoa(encodeURIComponent(this.myForm.password).replace(/%([0-9A-F]{2})/g,
       (match, p1) => {
         return String.fromCharCode(("0x" + p1) as any);
@@ -67,6 +67,7 @@ export class CadastroUsuarioComponent implements OnInit {
       this.back();
     }, err => {
       this.loading = false;
+      this.myForm.password = '';
       this.openDialog("Erro ao criar usuario! Por gentileza tente mais tarde!")
     })
   }
