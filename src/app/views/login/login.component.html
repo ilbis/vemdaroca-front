@@ -1,34 +1,34 @@
 <div class="loading-indicator" *ngIf="loading">
     <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
-  </div>
+</div>
 <div class="bg"></div>
-    <div class="login-page">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
-            <img class="logo" src="../../../assets/logo.png">
+<div class="login-page">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+        <img class="logo" src="../../../assets/logo.png">
 
-            <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline">
             <mat-label>ID Usuário</mat-label>
             <input matInput placeholder="Placeholder" required formControlName="username" class="form-control">
             <mat-icon matPrefix>face</mat-icon>
-            </mat-form-field>
+        </mat-form-field>
 
-            <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" class="form-control">
             <mat-icon matPrefix>https</mat-icon>
 
-            </mat-form-field>
+        </mat-form-field>
 
-            <div class="message">
-                <span (click)="esqueceuSenha()">Esqueceu A Senha? Clique Aqui Para Recuperar!</span>
-            </div>
-            <div class="entrar">
-                <br><button mat-raised-button>ENTRAR</button><br>
-            </div> 
-        </form>
-        
-        <div class="register">
-            <p>Não Tem Uma Conta? <a href="/cadastro-usuario">Clique Aqui e Registre-se Agora!</a></p>
+        <div class="message">
+            <span (click)="esqueceuSenha()">Esqueceu A Senha? Clique Aqui Para Recuperar!</span>
         </div>
+        <div class="entrar">
+            <br><button mat-raised-button>ENTRAR</button><br>
+        </div>
+    </form>
 
+    <div class="register">
+        <p>Não Tem Uma Conta? <a href="/cadastro-usuario">Clique Aqui e Registre-se Agora!</a></p>
     </div>
+
+</div>
