@@ -36,7 +36,7 @@ export class CadastroUsuarioComponent implements OnInit {
       cep: ['', Validators.required],
       rua: ['', Validators.required],
       numero: ['', Validators.required],
-      complemento: ['', Validators.required],
+      complemento: [''],
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],

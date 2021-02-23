@@ -57,7 +57,7 @@ export class EditarUsuarioComponent implements OnInit {
         cep: [this.user.cep, Validators.required],
         rua: [this.user.rua, Validators.required],
         numero: [this.user.numero, Validators.required],
-        complemento: [this.user.complemento, Validators.required],
+        complemento: [this.user.complemento],
         bairro: [this.user.bairro, Validators.required],
         cidade: [this.user.cidade, Validators.required],
         uf: [this.user.uf, Validators.required],
