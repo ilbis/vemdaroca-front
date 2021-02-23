@@ -1,6 +1,7 @@
 <div class="loading-indicator" *ngIf="loading">
     <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
 </div>
+<div class="bg"></div>
 <img class="logo" src="../../../assets/logo.png">
 <button mat-raised-button class="menu" (click)="menu()">Voltar ao Menu</button>
 <button mat-raised-button class="logout" (click)="logout()">Logout</button>
@@ -69,20 +70,22 @@
 
     <mat-form-field appearance="legacy" class="middle">
         <mat-label>UF</mat-label>
-        <input matInput required formControlName="uf" maxlength="2" class="form-control">
+        <input matInput required formControlName="uf" maxlength="2" class="form-control uf">
         <mat-error *ngIf="editarUsuario.controls.uf.hasError('required')">Campo Obrigatório!</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="legacy" class="full">
         <mat-label>Senha</mat-label>
-        <input matInput required formControlName="password" maxlength="50" class="form-control" type="password">
+        <input matInput required formControlName="password" maxlength="50" class="form-control" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
         <mat-error *ngIf="editarUsuario.controls.password.hasError('required')">Campo Obrigatório!</mat-error>
+        <mat-error *ngIf="editarUsuario.controls.password.hasError('pattern')">A senha deve conter pelo menos uma letra maiuscula e um numero</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="legacy" class="full">
         <mat-label>Comfirmar Senha</mat-label>
         <input matInput required formControlName="confirmPassword" maxlength="50" class="form-control" type="password">
         <mat-error *ngIf="editarUsuario.controls.confirmPassword.hasError('required')">Campo Obrigatório!</mat-error>
+        <mat-error *ngIf="editarUsuario.controls.confirmPassword.errors?.confirmedValidator">Senhas não Conferem</mat-error>
     </mat-form-field>
 
     <button mat-raised-button color="accent">Atualizar Usuario</button>

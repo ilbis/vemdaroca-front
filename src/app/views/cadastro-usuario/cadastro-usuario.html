@@ -1,97 +1,98 @@
 <div class="loading-indicator" *ngIf="loading">
     <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
 </div>
-<div class="bg">
-    <div class="label" (click)="back()">
-        <span class="material-icons">keyboard_arrow_left</span>
-        <span class="login">Login</span>
-    </div>
-
-    <div class="registro"> 
-        <p></p>
-    </div>
-
-    <form [formGroup]="cadastroUsuario" (ngSubmit)="onSubmit()" class="form">
-    
-        <mat-form-field appearance="legacy" class="full">
-            <mat-label>Nome Completo</mat-label>
-            <input matInput required formControlName="nome" maxlength="100" class="form-control">
-            <mat-error *ngIf="cadastroUsuario.controls.nome.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="full">
-            <mat-label>ID Usuário</mat-label>
-            <input matInput required formControlName="username" maxlength="20" class="form-control">
-            <mat-error *ngIf="cadastroUsuario.controls.username.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="full">
-            <mat-label>Email</mat-label>
-            <input matInput required formControlName="email" maxlength="50" class="form-control">
-            <!-- <mat-error *ngIf="cadastroUsuario.controls.nome.hasError('required')">Campo Obrigatório!</mat-error> -->
-            <mat-error *ngIf="cadastroUsuario.controls.email.hasError('email')">Fora do padrão de email</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="full">
-            <mat-label>Celular/WhatsApp</mat-label>
-            <input matInput required formControlName="tel" maxlength="15" class="form-control" [textMask]="{mask: telMask}">
-            <mat-error *ngIf="cadastroUsuario.controls.tel.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="full">
-            <mat-label>CEP</mat-label>
-            <input matInput required formControlName="cep" minLength="5" maxlength="10" class="form-control" [textMask]="{mask: cepMask}">
-            <mat-error *ngIf="cadastroUsuario.controls.cep.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="middle">
-            <mat-label>Rua</mat-label>
-            <input matInput required formControlName="rua" maxlength="100" class="form-control">
-            <mat-error *ngIf="cadastroUsuario.controls.rua.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="middle">
-            <mat-label>Número</mat-label>
-            <input matInput required formControlName="numero" maxlength="10" class="form-control">
-            <mat-error *ngIf="cadastroUsuario.controls.numero.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="middle">
-            <mat-label>Complemento</mat-label>
-            <input matInput formControlName="complemento" maxlength="50" class="form-control">
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="middle">
-            <mat-label>Bairro</mat-label>
-            <input matInput required formControlName="bairro" maxlength="30" class="form-control">
-            <mat-error *ngIf="cadastroUsuario.controls.bairro.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="middle">
-            <mat-label>Cidade</mat-label>
-            <input matInput required formControlName="cidade" maxlength="30" class="form-control">
-            <mat-error *ngIf="cadastroUsuario.controls.cidade.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="middle">
-            <mat-label>UF</mat-label>
-            <input matInput required formControlName="uf" maxlength="2" class="form-control">
-            <mat-error *ngIf="cadastroUsuario.controls.uf.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="full">
-            <mat-label>Senha</mat-label>
-            <input matInput required formControlName="password" maxlength="50" class="form-control" type="password">
-            <mat-error *ngIf="cadastroUsuario.controls.password.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy" class="full">
-            <mat-label>Comfirmar Senha</mat-label>
-            <input matInput required formControlName="confirmPassword" maxlength="50" class="form-control" type="password">
-            <mat-error *ngIf="cadastroUsuario.controls.confirmPassword.hasError('required')">Campo Obrigatório!</mat-error>
-        </mat-form-field>
-
-        <button mat-raised-button color="accent">Cadastrar</button>
-    </form>
-
+<div class="bg"></div>
+<div class="label" (click)="back()">
+    <span class="material-icons">keyboard_arrow_left</span>
+    <span class="login">Login</span>
 </div>
+
+<div class="registro">
+    <p></p>
+</div>
+
+<form [formGroup]="cadastroUsuario" (ngSubmit)="onSubmit()" class="form">
+
+    <mat-form-field appearance="legacy" class="full">
+        <mat-label>Nome Completo</mat-label>
+        <input matInput required formControlName="nome" maxlength="100" class="form-control">
+        <mat-error *ngIf="cadastroUsuario.controls.nome.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="full">
+        <mat-label>ID Usuário</mat-label>
+        <input matInput required formControlName="username" maxlength="20" class="form-control">
+        <mat-error *ngIf="cadastroUsuario.controls.username.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="full">
+        <mat-label>Email</mat-label>
+        <input matInput required formControlName="email" maxlength="50" class="form-control">
+        <!-- <mat-error *ngIf="cadastroUsuario.controls.nome.hasError('required')">Campo Obrigatório!</mat-error> -->
+        <mat-error *ngIf="cadastroUsuario.controls.email.hasError('email')">Fora do padrão de email</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="full">
+        <mat-label>Celular/WhatsApp</mat-label>
+        <input matInput required formControlName="tel" maxlength="15" class="form-control" [textMask]="{mask: telMask}">
+        <mat-error *ngIf="cadastroUsuario.controls.tel.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="full">
+        <mat-label>CEP</mat-label>
+        <input matInput required formControlName="cep" minLength="5" maxlength="10" class="form-control"
+            [textMask]="{mask: cepMask}">
+        <mat-error *ngIf="cadastroUsuario.controls.cep.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="middle">
+        <mat-label>Rua</mat-label>
+        <input matInput required formControlName="rua" maxlength="100" class="form-control">
+        <mat-error *ngIf="cadastroUsuario.controls.rua.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="middle">
+        <mat-label>Número</mat-label>
+        <input matInput required formControlName="numero" maxlength="10" class="form-control">
+        <mat-error *ngIf="cadastroUsuario.controls.numero.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="middle">
+        <mat-label>Complemento</mat-label>
+        <input matInput formControlName="complemento" maxlength="50" class="form-control">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="middle">
+        <mat-label>Bairro</mat-label>
+        <input matInput required formControlName="bairro" maxlength="30" class="form-control">
+        <mat-error *ngIf="cadastroUsuario.controls.bairro.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="middle">
+        <mat-label>Cidade</mat-label>
+        <input matInput required formControlName="cidade" maxlength="30" class="form-control">
+        <mat-error *ngIf="cadastroUsuario.controls.cidade.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="middle">
+        <mat-label>UF</mat-label>
+        <input matInput required formControlName="uf" maxlength="2" class="form-control uf">
+        <mat-error *ngIf="cadastroUsuario.controls.uf.hasError('required')">Campo Obrigatório!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="full">
+        <mat-label>Senha</mat-label>
+        <input matInput required formControlName="password" maxlength="50" class="form-control" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+        <mat-error *ngIf="cadastroUsuario.controls.password.hasError('required')">Campo Obrigatório!</mat-error>
+        <mat-error *ngIf="cadastroUsuario.controls.password.hasError('pattern')">A senha deve conter pelo menos uma letra maiuscula e um numero</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="full">
+        <mat-label>Comfirmar Senha</mat-label>
+        <input matInput required formControlName="confirmPassword" maxlength="50" class="form-control" type="password">
+        <mat-error *ngIf="cadastroUsuario.controls.confirmPassword.hasError('required')">Campo Obrigatório!</mat-error>
+        <mat-error *ngIf="cadastroUsuario.controls.confirmPassword.errors?.confirmedValidator">Senhas não Conferem</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent">Cadastrar</button>
+</form>

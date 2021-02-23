@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
+import { ConfirmedValidator } from 'src/app/utils/confirmed-validator';
 import { DialogData } from '../utils/dialog.component';
 
 @Component({
@@ -38,9 +40,9 @@ export class CadastroUsuarioComponent implements OnInit {
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    });
+      password: ['', [Validators.required]],
+      confirmPassword: ['']
+    }, { validator: ConfirmedValidator('password', 'confirmPassword') });
   }
 
   onSubmit() {
